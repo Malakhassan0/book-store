@@ -1,0 +1,39 @@
+USER ==
+
+add to cart 
+remove  cart 
+edit books 
+rate 
+
+
+=============================
+
+
+admin==
+edit profile
+update books 
+create 
+get user 
+remove user 
+del books
+remove  admin 
+
+
+
+
+==============================
+main fun ===>
+reg
+login 
+logout
+show all /single 
+edit  pro
+add img (option)
+
+
+
+===========================================
+
+mod
+
+book mod { title ,content ,auth ,id , pic }
