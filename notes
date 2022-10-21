@@ -5,35 +5,29 @@ remove  cart
 edit books 
 rate 
 
-
-=============================
-
+========================================
 
 admin==
+add admin
+remove admin
 edit profile
 update books 
-create 
+add book
 get user 
 remove user 
 del books
 remove  admin 
 
-
-
-
-==============================
+=========================================
 main fun ===>
 reg
 login 
 logout
 show all /single 
-edit  pro
-add img (option)
+edit pro
+add img (optional)
 
-
-
-===========================================
+==========================================
 
 mod
-
 book mod { title ,content ,auth ,id , pic }
