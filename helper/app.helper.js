@@ -5,4 +5,3 @@ class Helper{
     } 
 }
 module.exports= Helper
-const x= 7
