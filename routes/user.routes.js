@@ -1,8 +1,8 @@
 const user= require("../controller/user.controller")
+const { auth, authUser } = require("../middleware/auth.middleware")
 const router = require("express").Router()
 
 router.post("/register",user.register)
-router.get("/single/:id",user.singleUser)
-router.get("/",user.showAllUsers)
+router.post("/login", user.login)
 
 module.exports= router

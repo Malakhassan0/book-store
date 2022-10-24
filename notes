@@ -1,12 +1,10 @@
 USER ==
-
 add to cart 
 remove  cart 
 edit books 
 rate 
-
+Create favorite books list (optional)
 ========================================
-
 admin==
 add admin
 remove admin
@@ -17,17 +15,17 @@ get user
 remove user 
 del books
 remove  admin 
-
 =========================================
 main fun ===>
 reg
 login 
 logout
-show all /single 
+show all /single book
 edit pro
 add img (optional)
-
 ==========================================
 
-mod
-book mod { title ,content ,auth ,id , pic }
+models
+book mod { adminId, title ,content ,auth ,id , price , pic }
+user mod { name,password,email,userType,imgprofile}
+order mod { userID,amount,createdAt,details[book,quantity]}
