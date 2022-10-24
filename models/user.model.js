@@ -38,21 +38,19 @@ const userSchema= mongoose.Schema({
             type:String,
              required:true
         }}],
-        //  cart:{
-        //     items: [
-        //         {
-        //           bookId: {
-        //             type: mongoose.Schema.Types.ObjectId,
-        //             required: true,
-        //             ref: 'Book'
-        //           },
-        //           quantity: {
-        //             type: Number,
-        //             required: true
-        //           }
-        //         }
-        //       ]
-        //  }  
+         cart:[
+                {
+                  bookId: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    required: true,
+                    ref: 'Book'
+                  },
+                  quantity: {
+                    type: Number,
+                    required: true
+                  }
+                }           
+            ]
 },{timestamps:true})
 
 // userSchema.virtual("admin", {
@@ -95,6 +93,11 @@ const userSchema= mongoose.Schema({
 //     return this.save()}
  /////////////////////////////////////////
 
+ userSchema.virtual("cartItems", {
+    ref:"Book",
+    localField:"_id",
+    foreignField:"books.userId"
+})
 
 userSchema.methods.toJSON = function(){
     const userData = this.toObject()
@@ -125,6 +128,10 @@ const bookModel = require("./book.model")
 userSchema.pre("remove", async function(){
     await bookModel.deleteMany({ adminId: this._id } )
 })
+// userSchema.pre("remove", async function(){
+//     await bookModel.deleteOne({ userId: this._id } )
+// })
+
 
 
 
