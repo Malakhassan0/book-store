@@ -8,26 +8,36 @@ const orderSchema = mongoose.Schema({
         type: String,
         default: Date.now()
     },
-    // status: {
-    //   type: String,
-    //   default: "Recieved",
-    //   enum: ["Cancelled", "Delivered", "Shipped", "Processing", "Recieved"]
+    status: {
+      type: String,
+      default: "Processing",
+      enum: ["Cancelled", "Delivered", "Shipped", "Processing", "Recieved"]
+    },
+    // phoneNumber:{
+    //        type:String,
+    //        required:true,
+    //        validate: (value) => {
+    //         if (!validator.isMobilePhone(value, "ar-EG"))
+    //           throw new Error("invalid phone Number");
+    //       },
     // },
-    // books: [
-    //   {
-    //     book: { type: Schema.Types.ObjectId, ref: "Book" },
-    //     count: { type: Number, required: true },
-    //   }],
-    // orderStatus: {type: Number, default: ORDER_STATUS.PROCESSED[0]},
-        orderItems: [
-            { 
-              // cart: {
-              //   type: mongoose.Schema.Types.ObjectId,
-              //   required: true,
-              //   ref:"Book"
-              // },
-            }],
-            address: {type:String,required:true,trim:true}
+     orderItems:[ { 
+             bookId: {
+                   type: mongoose.Schema.Types.ObjectId,
+                        required: true,
+                        ref: 'Book'
+                    },
+                    // bookBody:{
+                    //     type: mongoose.Schema.Types.Array,
+                    //     required: true,
+                    //     ref: 'Book'
+                    // },
+                    quantity: {
+                        type: Number,
+                        required: true
+                    }
+                }],
+                address: {type:String,required:true,trim:true}
 })
 // const ORDER_STATUS = {
 //   PROCESSED: [0, 'PROCESSED'],
@@ -43,6 +53,12 @@ const orderSchema = mongoose.Schema({
 // OrderSchema.methods.getOrderStatusString = function () {
 //   return ORDER_STATUS[Object.keys(ORDER_STATUS)[this.orderStatus]][1];
 // };
+   // books: [
+    //   {
+    //     book: { type: Schema.Types.ObjectId, ref: "Book" },
+    //     count: { type: Number, required: true },
+    //   }],
+    // orderStatus: {type: Number, default: ORDER_STATUS.PROCESSED[0]},
 const Order = mongoose.model("Order", orderSchema)
 
 module.exports = Order

@@ -15,6 +15,7 @@ const bookSchema= mongoose.Schema({
     author:{
         type:String,
         trim:true,
+        default: "unknown"
         // required:true
     },
     price: {
@@ -35,6 +36,12 @@ const bookSchema= mongoose.Schema({
     // }}],
     
 },{timestamps:true})
+
+// bookSchema.virtual("cartItems", {
+//     ref:"Order",
+//     localField:"_id",
+//     foreignField:"orderItems.bookId"
+// })
 
 const Book = mongoose.model("Books",bookSchema)
 module.exports= Book

@@ -40,15 +40,20 @@ const userSchema= mongoose.Schema({
         }}],
          cart:[
                 {
-                  bookId: {
-                    type: mongoose.Schema.Types.ObjectId,
-                    required: true,
-                    ref: 'Book'
-                  },
-                  quantity: {
-                    type: Number,
-                    required: true
-                  }
+                    bookId: {
+                        type: mongoose.Schema.Types.ObjectId,
+                             required: true,
+                             ref: 'Book'
+                         },
+                        //  bookBody:{
+                        //      type: mongoose.Schema.Types.Array,
+                        //      required: true,
+                        //      ref: 'Book'
+                        //  },
+                         quantity: {
+                             type: Number,
+                             required: true
+                         }
                 }           
             ]
 },{timestamps:true})
@@ -92,12 +97,17 @@ const userSchema= mongoose.Schema({
 //     this.cart = { items: [] };
 //     return this.save()}
  /////////////////////////////////////////
+//  userSchema.virtual("userOrder", {
+//     ref:"Order",
+//     localField:"_id",
+//     foreignField:"userId"
+// })
 
- userSchema.virtual("cartItems", {
-    ref:"Book",
-    localField:"_id",
-    foreignField:"books.userId"
-})
+//  userSchema.virtual("cartItems", {
+//     ref:"Book",
+//     localField:"_id",
+//     foreignField:"books.userId"
+// })
 
 userSchema.methods.toJSON = function(){
     const userData = this.toObject()
@@ -132,7 +142,10 @@ userSchema.pre("remove", async function(){
 //     await bookModel.deleteOne({ userId: this._id } )
 // })
 
-
+// const orderModel = require("./order.model")
+// userSchema.pre("remove", async function(){
+//     await orderModel.deleteMany({ UserId: this._id } )
+// })
 
 
 const User = mongoose.model("Users",userSchema)
