@@ -1,8 +1,9 @@
 // const bookModel = require("../models/book.model")
 const {resBuilder}= require("../helper/app.helper")
 const bookModel= require("../models/book.model")
-const orderModel = require("../models/book.model")
-const adminModel = require("../models/user.model")
+const orderModel = require("../models/order.model")
+// const userModel = require("../models/user.model")
+
 
 class Book{
     static addBook= async(req,res)=>{
@@ -47,19 +48,8 @@ class Book{
             resBuilder(res,false,e,e.message) 
         }
        }
-       
-    static orderBook = async (req,res)=>{
-        try{
-            const bookData= await bookModel.findById(req.params.id)
-             if(!bookData) throw new Error("book is not found")
-             const newOrder = new orderModel({ userId:req.user._id})
-             newOrder.books.push({book:{bookData}})
-             await newOrder.save()
-             resBuilder(res,true,newOrder,"new order")
-        }
-        catch(e){
-            resBuilder(res,false,e,e.message)
-        }
-    }
+
+   
+      
 }
 module.exports= Book

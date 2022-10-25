@@ -33,7 +33,7 @@ class Admin {
             resBuilder(res,false,e,e.message) 
         }
        }
-       static delete = async(req,res)=>{
+    static delete = async(req,res)=>{
         try{
             const delUser = adminModel.findById(req.params.id)
             const Data= await delUser.remove() 

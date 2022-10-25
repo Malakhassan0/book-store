@@ -7,6 +7,8 @@ router.post("/addBook",auth,authAdmin,upload.single("bookImg"),book.addBook)
 router.get("/singleBook/:id",book.singleBook)
 router.get("/allBooks",book.showAllBooks)
 router.delete("/delBook/:id",auth,authAdmin,book.deleteBook)
-router.post("/newOrder/:id",auth,authUser,book.orderBook)
+
+
+
 
 module.exports= router
