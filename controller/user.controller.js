@@ -45,7 +45,7 @@ class User{
         }
     }
     static me = async(req,res)=>{
-        resBuilder(res,true,req.user,"all users") 
+        resBuilder(res,true,req.user,"logged in") 
     }
     static editPro = async(req,res)=>{
         try{

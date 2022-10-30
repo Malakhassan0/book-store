@@ -17,11 +17,10 @@ class Order{
     }
     static delOrder= async(req,res)=>{
         try{
-            const del = orderModel.findByIdAndRemove(req.params.id)
-            console.log(del)
-            // const del= delUserOrder.remove()
-            await del.save()
-            resBuilder(res,true,del,"order is removed")
+            const found = orderModel.findById(req.params.id)
+            if(!found) throw new Error ("there is no order found by this id")
+            const ord = await found.remove()
+            resBuilder(res,true,ord,"order is removed")
         }
         catch(e){
             resBuilder(res,false,e,e.message)

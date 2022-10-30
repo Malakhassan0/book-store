@@ -53,7 +53,8 @@ const userSchema= mongoose.Schema({
                          quantity: {
                              type: Number,
                              required: true
-                         }
+                         },
+                        
                 }           
             ]
 },{timestamps:true})
@@ -113,6 +114,7 @@ userSchema.methods.toJSON = function(){
     const userData = this.toObject()
     delete userData.__v
     delete userData.password
+    // if(userType=="admin") delete userData.cart
     return userData
 }
 userSchema.pre("save", async function(){

@@ -6,6 +6,7 @@ class Cart{
     static AddToCart = async (req,res)=>{
         try{
             const bookData= await bookModel.findById(req.params.id)
+            if(!req.user.userType=="user") throw new Error("cart for users only")
             // console.log(bookData)
              if(!bookData) throw new Error("book is not found")
              const bookCart = req.user.cart.find(el=> el.bookId==req.params.id)
