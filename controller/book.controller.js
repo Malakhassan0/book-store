@@ -64,9 +64,18 @@ class Book{
             resBuilder(res,false,e,e.message)
         }
        }
-       static showbyCategory = async(req,res)=>{
+       static showCategories = async(req,res)=>{
+        try{   
+            const bookCat = await bookModel.find()
+            resBuilder(res,true,bookCat,"books with the same category")
+        }
+        catch(e){
+            resBuilder(res,false,e,e.message)
+        }
+       }
+       static showSingleCategory = async(req,res)=>{
         try{
-            // const cat = await  bookModel.find( req.book.category)
+            // const cat = await  bookModel.find({category:req.params.category})
             const bookCat = await bookModel.find({category:req.params.category})
             // const bookCat = bookModel.find(req.params.category).populate("",bookModel)
             resBuilder(res,true,bookCat,"books with the same category")

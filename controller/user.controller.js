@@ -6,6 +6,7 @@ class User{
    static register = async (req,res)=>{
     try{
         const userData=  new userModel(req.body)
+       
         userData.userType="user"
         await userData.save()
         resBuilder(res,true,userData,"added successfully") 
@@ -14,6 +15,16 @@ class User{
         resBuilder(res,false,e,e.message) 
     }
    }
+   //add profile image
+  static addImgProfile = async (req, res) => {
+    try {
+      req.user.imgProfile = req.file.path.replace("public\\", "");
+      await req.user.save();
+      resBuilder(res, true, req.user, "Updatedprofile image done");
+    } catch (e) {
+      resBuilder(res, false, e, e.message);
+    }
+  };
    static login = async(req,res)=>{
        try{
            const userData = await userModel.login(req.body.userName, req.body.password)

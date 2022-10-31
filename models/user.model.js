@@ -26,6 +26,7 @@ const userSchema= mongoose.Schema({
     imgProfile:{
         type:String,
         trim:true,
+        default:""
     },
     userType:{
         type:String,
