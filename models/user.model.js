@@ -26,7 +26,7 @@ const userSchema= mongoose.Schema({
     imgProfile:{
         type:String,
         trim:true,
-        default:"avtar.jpg"
+        // default:"avtar.jpg"
     },
     userType:{
         type:String,
