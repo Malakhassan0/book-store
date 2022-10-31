@@ -18,9 +18,9 @@ class User{
    //add profile image
   static addImgProfile = async (req, res) => {
     try {
-      req.user.imgProfile = req.file.path.replace("public\\", "");
+      req.user.imgProfile = req.file.path.replace("static\\", "");
       await req.user.save();
-      resBuilder(res, true, req.user, "Updatedprofile image done");
+      resBuilder(res, true, req.user, "new images is added");
     } catch (e) {
       resBuilder(res, false, e, e.message);
     }
