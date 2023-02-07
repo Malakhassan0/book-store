@@ -1,4 +1,7 @@
 const mongoose = require('mongoose')
+const validator = require("validator")
+
+
 const orderSchema = mongoose.Schema({
     userId:{
         type: mongoose.Schema.Types.ObjectId,   
@@ -13,14 +16,13 @@ const orderSchema = mongoose.Schema({
       default: "Processing",
       enum: ["Cancelled", "Delivered", "Shipped", "Processing", "Recieved"]
     },
-    // phoneNumber:{
-    //        type:String,
-    //        required:true,
-    //        validate: (value) => {
-    //         if (!validator.isMobilePhone(value, "ar-EG"))
-    //           throw new Error("invalid phone Number");
-    //       },
-    // },
+    phoneNumber:{
+           type:String,
+           required:true,
+           validate: (value) => {
+            if (!validator.isMobilePhone(value, "ar-EG"))throw new Error("invalid phone Number");
+          },
+    },
      orderItems:[ { 
              bookId: {
                    type: mongoose.Schema.Types.ObjectId,

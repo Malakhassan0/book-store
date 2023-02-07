@@ -7,16 +7,25 @@ const bookSchema= mongoose.Schema({
         trim:true,
         required:true
     },
+    subtitle:{
+        type:String,
+        trim:true,
+        // required:true
+    },
     content:{
         type:String,
         trim:true,
-        required:true
+        // required:true
     },
     author:{
         type:String,
         trim:true,
-        default: "unknown"
-        // required:true
+        required:true
+    },
+    category:{
+         type:String,
+         trim:true,
+         required:true
     },
     price: {
         type: Number,
@@ -27,6 +36,10 @@ const bookSchema= mongoose.Schema({
         trim:true,
         required:true
     },
+    publisher:{
+        type:String,
+        trim:true,
+    }
     // rates:[{
     //     rate:{
     //     type:String,

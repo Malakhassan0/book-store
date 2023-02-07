@@ -48,6 +48,51 @@ class Book{
             resBuilder(res,false,e,e.message) 
         }
        }
+       static editBook = async(req,res)=>{
+        try{
+            const bookData= await bookModel.findById(req.params.id)
+            if(!bookData) throw new Error("book not found")
+            const allowedEdits = ["title","price","category","author"]
+            const keys = Object.keys(req.body)
+            const valid = keys.every(el=> allowedEdits.includes(el))
+            if(!valid) throw new Error("invalid edit keys")
+            keys.forEach(k=> bookData[k]= req.body[k])
+            await bookData.save()
+            resBuilder(res,true,bookData,"book is updated") 
+        }
+        catch(e){
+            resBuilder(res,false,e,e.message)
+        }
+       }
+       static showCategories = async(req,res)=>{
+        try{   
+            const bookCat = await bookModel.find()
+            resBuilder(res,true,bookCat,"books with the same category")
+        }
+        catch(e){
+            resBuilder(res,false,e,e.message)
+        }
+       }
+       static showSingleCategory = async(req,res)=>{
+        try{
+            // const cat = await  bookModel.find({category:req.params.category})
+            const bookCat = await bookModel.find({category:req.params.category})
+            // const bookCat = bookModel.find(req.params.category).populate("",bookModel)
+            resBuilder(res,true,bookCat,"books with the same category")
+        }
+        catch(e){
+            resBuilder(res,false,e,e.message)
+        }
+       }
+       static showbytitle = async(req,res)=>{
+        try{
+            const book = await bookModel.find({title:req.params.name})
+            resBuilder(res,true,book,"here's the book")
+        }
+        catch(e){
+            resBuilder(res,false,e,e.message)
+        }
+       }
 
    
       

@@ -10,7 +10,7 @@ const userSchema= mongoose.Schema({
         required:true,
         unique:true,
         minLength:3,
-        maxLength:10
+        maxLength:15
     },
     password:{
         type:String,
@@ -20,12 +20,12 @@ const userSchema= mongoose.Schema({
     email:{
         type:String,
         trim:true,
-        required:true,
         validate: function(value){if(!validator.isEmail(value)) throw new Error("invalid email")}
     },
     imgProfile:{
         type:String,
         trim:true,
+        default:"images/avtar.jpg"
     },
     userType:{
         type:String,
@@ -53,7 +53,8 @@ const userSchema= mongoose.Schema({
                          quantity: {
                              type: Number,
                              required: true
-                         }
+                         },
+                        
                 }           
             ]
 },{timestamps:true})
@@ -113,6 +114,7 @@ userSchema.methods.toJSON = function(){
     const userData = this.toObject()
     delete userData.__v
     delete userData.password
+    // if(userType=="admin") delete userData.cart
     return userData
 }
 userSchema.pre("save", async function(){
